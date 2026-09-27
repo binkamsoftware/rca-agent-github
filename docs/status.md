@@ -16,7 +16,7 @@
 | Milestone | Date | Commit | Notes |
 |---|---|---|---|
 | M01 | 2026-09-27 | ae9c0e2 | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
-| M02 | 2026-09-27 | (see branch) | `domain/errors.py`, `identifiers.py`, `enums.py`; spec §6.1 format rules added |
+| M02 | 2026-09-27 | bca38e9 | `domain/errors.py`, `identifiers.py`, `enums.py`; spec §6.1 format rules added |
 
 Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, `.gitignore`.
 

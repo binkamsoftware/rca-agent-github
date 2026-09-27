@@ -3,15 +3,15 @@
 > Read this at the start of every session. Update it at the end of every session that changes state.
 
 **Last updated:** 2026-09-27
-**Current milestone:** M04 — Claims, RecommendedFix, RCAResult finalization rules (not started)
+**Current milestone:** M04 — Claims, RecommendedFix, RCAResult finalization rules (implemented on `m04-rca-result`, not yet pushed)
 **Blocked on:** nothing.
 
 ## Next action
 
-1. Review and merge PR #3 (`m03-citation-model`).
-2. Then start M04 in a fresh session, plan mode, on branch `m04-rca-result` from `main`.
+1. Push `m04-rca-result` and open PR #4; review and merge.
+2. Then start M05 in a fresh session, plan mode, on branch `m05-run-control` from `main`.
 
-M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`). M03 is open as PR #3.
+M01–M03 (PRs #1–#3) are merged to `main` (`a4a18b3`).
 
 ## Completed milestones
 
@@ -20,6 +20,7 @@ M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`). M03 is open as PR 
 | M01 | 2026-09-27 | ae9c0e2 | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
 | M02 | 2026-09-27 | bca38e9 | `domain/errors.py`, `identifiers.py`, `enums.py`; spec §6.1 format rules added |
 | M03 | 2026-09-27 | 3b044e1 | `domain/evidence/citation.py`, `excerpt_matching.py`; §6.2 checks 2–4 |
+| M04 | 2026-09-27 | (see branch) | `domain/rca/claim.py`, `outcome.py`, `finalization.py`, `rca_result.py` |
 
 Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, `.gitignore`.
 
@@ -43,6 +44,8 @@ C1–C3, S1–S7 applied → spec v0.3. S8–S10 resolved by D4/D5/D3.
 M02 (user-approved): §6.1 gained `PR#N/comment/ID` for `pr_comment`, file line forms `#Ls-Le` / `#Ln` / none, lowercase 7–40 hex SHAs, and `content_hash` = `sha256:<64 hex>`.
 
 M03 (user-approved): `CitationKind` is an alias of `ArtifactKind`. `content_trust = system` is allowed only on `ci_run` citations. There is no Unicode normalization beyond whitespace. Abbreviated citation SHAs match as a prefix of the artifact SHA. Lines split on `\n` only.
+
+M04 (user-approved plan): `RCAResult` validator enforces finalized §6.3 claims and the sufficiency cap, so an unfinalized result cannot be built (the LLM draft model comes later). Cap is to `partial`, never lower. `describe_sufficiency_caps` gives deterministic `missing_evidence` text. `RCAStatus`/`EvidenceSufficiency` live in `domain/rca/outcome.py` (avoids an import cycle). Property test is stdlib (seeded random); no `hypothesis` dependency. Open gap: §6.4 sets no verification rule for `RecommendedFix.evidence` — candidate spec change.
 
 ## Known issues / notes
 

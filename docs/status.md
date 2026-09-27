@@ -3,19 +3,20 @@
 > Read this at the start of every session. Update it at the end of every session that changes state.
 
 **Last updated:** 2026-09-27
-**Current milestone:** M02 — Errors and shared value types (not started)
+**Current milestone:** M03 — Citation model and excerpt verification rules (not started)
 **Blocked on:** nothing.
 
 ## Next action
 
-1. M01 is on branch `m01-tooling-skeleton` (pushed to `origin`), not yet merged to `main`. Open/merge its PR when ready.
-2. Start M02 in a fresh session, plan mode, on a new branch `m02-errors-value-types` created from `m01-tooling-skeleton` (so the tooling is present).
+1. M01 (`m01-tooling-skeleton`) and M02 (`m02-errors-value-types`, stacked on M01) are not yet merged to `main`. Push and open/merge PRs when ready.
+2. Start M03 in a fresh session, plan mode, on a new branch `m03-citation-model` created from `m02-errors-value-types`.
 
 ## Completed milestones
 
 | Milestone | Date | Commit | Notes |
 |---|---|---|---|
 | M01 | 2026-09-27 | ae9c0e2 | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
+| M02 | 2026-09-27 | (see branch) | `domain/errors.py`, `identifiers.py`, `enums.py`; spec §6.1 format rules added |
 
 Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, `.gitignore`.
 
@@ -35,6 +36,8 @@ Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, 
 ## Spec changes (plan §5)
 
 C1–C3, S1–S7 applied → spec v0.3. S8–S10 resolved by D4/D5/D3.
+
+M02 (user-approved): §6.1 gained `PR#N/comment/ID` for `pr_comment`, file line forms `#Ls-Le` / `#Ln` / none, lowercase 7–40 hex SHAs, and `content_hash` = `sha256:<64 hex>`.
 
 ## Known issues / notes
 

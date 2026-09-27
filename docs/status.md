@@ -20,7 +20,7 @@ M01–M03 (PRs #1–#3) are merged to `main` (`a4a18b3`).
 | M01 | 2026-09-27 | ae9c0e2 | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
 | M02 | 2026-09-27 | bca38e9 | `domain/errors.py`, `identifiers.py`, `enums.py`; spec §6.1 format rules added |
 | M03 | 2026-09-27 | 3b044e1 | `domain/evidence/citation.py`, `excerpt_matching.py`; §6.2 checks 2–4 |
-| M04 | 2026-09-27 | (see branch) | `domain/rca/claim.py`, `outcome.py`, `finalization.py`, `rca_result.py` |
+| M04 | 2026-09-27 | 05b17ee | `domain/rca/claim.py`, `outcome.py`, `finalization.py`, `rca_result.py` |
 
 Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, `.gitignore`.
 

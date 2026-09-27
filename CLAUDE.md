@@ -67,18 +67,19 @@ tests/
 
 ## Commands
 
-The environment is a local `.venv` (Python 3.12) with `requirements.txt`. Phase 0 migrates to `pyproject.toml`. Update this section when it does.
+The environment is a local `.venv` (Python 3.12). Dependencies live in `pyproject.toml` (runtime) and its `dev` extra (tooling).
 
 ```bash
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e ".[dev]"
 
-pytest -m "not integration and not e2e and not evaluation"   # default; must pass before any commit
-pytest tests/temporal tests/security                          # required when touching retrieval, ingestion, prompts
-pytest -m integration                                         # needs Docker services; run when touching adapters
+ruff check . && ruff format --check . && mypy src && lint-imports   # must pass before any commit
+pytest -m "not integration and not e2e and not evaluation"         # default suite; must pass before any commit
+pytest tests/temporal tests/security                                # required when touching retrieval, ingestion, prompts
+pytest -m integration                                               # needs Docker services; run when touching adapters
 ```
 
-Planned for Phase 0 (not yet installed; add with justification per the workflow below): `ruff` (with `N` and `D` rule sets), `mypy --strict`, `import-linter`, `pytest-asyncio`. Once present: `ruff check . && ruff format --check . && mypy src && lint-imports`.
+Import-linter contracts (ADR-001) live in `[tool.importlinter]` in `pyproject.toml`. CI (`.github/workflows/ci.yml`) runs the same checks.
 
 ## Coding standards
 

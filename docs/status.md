@@ -8,8 +8,9 @@
 
 ## Next action
 
-1. M01 (`m01-tooling-skeleton`) and M02 (`m02-errors-value-types`, stacked on M01) are not yet merged to `main`. Push and open/merge PRs when ready.
-2. Start M03 in a fresh session, plan mode, on a new branch `m03-citation-model` created from `m02-errors-value-types`.
+1. Start M03 in a fresh session, plan mode, on a new branch `m03-citation-model` created from `main`.
+
+M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`).
 
 ## Completed milestones
 
@@ -45,7 +46,7 @@ M02 (user-approved): §6.1 gained `PR#N/comment/ID` for `pr_comment`, file line 
 - Ruff is scoped to `*.py` so it never rewrites code snippets in docs/ADRs.
 - import-linter cannot allow-list "stdlib + pydantic"; vendor SDKs are forbidden by name. Extend the lists when adding a new SDK.
 - `.env` exists locally and is git-ignored; never read or print it.
-- Remote: `origin` = github.com/binkamsoftware/rca-agent-github. Local `master` tracks `origin/main`. Push as GitHub user `binkamsoftware`.
+- Remote: `origin` = github.com/binkamsoftware/rca-agent-github. Local `main` tracks `origin/main` (old local `master` is redundant). Push as GitHub user `binkamsoftware`. `gh`/push need the sandbox disabled (keychain + TLS).
 
 ## Update rules
 

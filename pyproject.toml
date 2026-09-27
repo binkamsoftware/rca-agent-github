@@ -1,0 +1,157 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rca-platform"
+version = "0.1.0"
+description = "GitHub Issue RCA Platform: evidence-backed root-cause analysis and RCA validation agents."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # Typed domain models, config, and structured LLM outputs.
+    "pydantic>=2.13",
+    # Declared now; unused until their milestones (plan M01 §6).
+    "langgraph>=1.2",
+    "langchain-core>=1.6",
+    "fastapi>=0.141",
+    "uvicorn>=0.54",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1",
+    "pytest-asyncio>=1.4",
+    "ruff>=0.16",
+    "mypy>=2.3",
+    "import-linter>=2.15",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------- ruff
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+# Docs hold illustrative snippets; only lint and format real code.
+include = ["*.py", "*.pyi"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",  # pycodestyle
+    "F",       # pyflakes
+    "I",       # isort
+    "N",       # pep8-naming (CLAUDE.md naming rules)
+    "D",       # pydocstyle (CLAUDE.md docstring rules)
+    "UP",      # pyupgrade
+    "B",       # bugbear
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# ---------------------------------------------------------------- mypy
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+packages = ["rca_platform"]
+
+# ---------------------------------------------------------------- pytest
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--strict-markers"
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+
+# ---------------------------------------------------------------- import-linter
+# ADR-001 dependency rules. Vendor SDKs are listed explicitly because
+# import-linter cannot express "stdlib + pydantic only" as an allow-list.
+
+[tool.importlinter]
+root_package = "rca_platform"
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "domain imports only stdlib and pydantic"
+type = "forbidden"
+source_modules = ["rca_platform.domain"]
+forbidden_modules = [
+    "rca_platform.ports",
+    "rca_platform.application",
+    "rca_platform.adapters",
+    "rca_platform.api",
+    "rca_platform.config",
+    "langgraph",
+    "langchain_core",
+    "fastapi",
+    "starlette",
+    "uvicorn",
+]
+
+[[tool.importlinter.contracts]]
+name = "ports import only domain"
+type = "forbidden"
+source_modules = ["rca_platform.ports"]
+forbidden_modules = [
+    "rca_platform.application",
+    "rca_platform.adapters",
+    "rca_platform.api",
+    "rca_platform.config",
+    "langgraph",
+    "langchain_core",
+    "fastapi",
+    "starlette",
+    "uvicorn",
+]
+
+[[tool.importlinter.contracts]]
+name = "application never imports adapters or vendor SDKs"
+type = "forbidden"
+source_modules = ["rca_platform.application"]
+forbidden_modules = [
+    "rca_platform.adapters",
+    "rca_platform.api",
+    "rca_platform.config",
+    "langchain_core",
+    "fastapi",
+    "starlette",
+    "uvicorn",
+]
+
+[[tool.importlinter.contracts]]
+name = "adapters never import application or api"
+type = "forbidden"
+source_modules = ["rca_platform.adapters"]
+forbidden_modules = [
+    "rca_platform.application",
+    "rca_platform.api",
+    "rca_platform.config",
+]
+
+[[tool.importlinter.contracts]]
+name = "api never imports adapters directly"
+type = "forbidden"
+source_modules = ["rca_platform.api"]
+forbidden_modules = [
+    "rca_platform.adapters",
+]
+
+[[tool.importlinter.contracts]]
+name = "production code never imports evaluation"
+type = "forbidden"
+source_modules = [
+    "rca_platform.domain",
+    "rca_platform.ports",
+    "rca_platform.application",
+    "rca_platform.adapters",
+    "rca_platform.api",
+    "rca_platform.config",
+]
+forbidden_modules = ["rca_platform.evaluation"]

@@ -8,10 +8,10 @@
 
 ## Next action
 
-1. Push `m03-citation-model` and open a PR to `main`; merge after review.
+1. Review and merge PR #3 (`m03-citation-model`).
 2. Then start M04 in a fresh session, plan mode, on branch `m04-rca-result` from `main`.
 
-M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`). M03 is committed on `m03-citation-model` and has not been pushed yet.
+M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`). M03 is open as PR #3.
 
 ## Completed milestones
 

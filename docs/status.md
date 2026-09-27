@@ -8,14 +8,14 @@
 
 ## Next action
 
-1. Merge branch `m01-tooling-skeleton` (CI not yet verified on GitHub; no remote configured).
-2. Start M02 in a fresh session, plan mode.
+1. M01 is on branch `m01-tooling-skeleton` (pushed to `origin`), not yet merged to `main`. Open/merge its PR when ready.
+2. Start M02 in a fresh session, plan mode, on a new branch `m02-errors-value-types` created from `m01-tooling-skeleton` (so the tooling is present).
 
 ## Completed milestones
 
 | Milestone | Date | Commit | Notes |
 |---|---|---|---|
-| M01 | 2026-09-27 | (this commit) | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
+| M01 | 2026-09-27 | ae9c0e2 | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
 
 Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, `.gitignore`.
 
@@ -42,7 +42,7 @@ C1–C3, S1–S7 applied → spec v0.3. S8–S10 resolved by D4/D5/D3.
 - Ruff is scoped to `*.py` so it never rewrites code snippets in docs/ADRs.
 - import-linter cannot allow-list "stdlib + pydantic"; vendor SDKs are forbidden by name. Extend the lists when adding a new SDK.
 - `.env` exists locally and is git-ignored; never read or print it.
-- Docs baseline committed on `master`.
+- Remote: `origin` = github.com/binkamsoftware/rca-agent-github. Local `master` tracks `origin/main`. Push as GitHub user `binkamsoftware`.
 
 ## Update rules
 

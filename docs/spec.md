@@ -204,10 +204,17 @@ httpx/_client.py@abc1234#L120-L147
 issue#123
 issue#123/comment/987654321
 PR#456
+PR#456/comment/987654321
 commit:abc1234
 release:0.27.0
 ci_run#789
 ```
+
+Reference format rules:
+
+- File references take a line range `#L120-L147`, a single line `#L120`, or no fragment (whole file). A range whose start equals its end is written as a single line.
+- SHAs are lowercase hex, 7–40 characters. Numbers are positive integers without leading zeros.
+- `content_hash` is written `sha256:<64 lowercase hex>`.
 
 Issues, comments, and PR bodies are mutable; a citation to them MUST include `content_hash` of the revision used so it can be verified after later edits.
 

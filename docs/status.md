@@ -3,14 +3,15 @@
 > Read this at the start of every session. Update it at the end of every session that changes state.
 
 **Last updated:** 2026-09-27
-**Current milestone:** M03 — Citation model and excerpt verification rules (not started)
+**Current milestone:** M04 — Claims, RecommendedFix, RCAResult finalization rules (not started)
 **Blocked on:** nothing.
 
 ## Next action
 
-1. Start M03 in a fresh session, plan mode, on a new branch `m03-citation-model` created from `main`.
+1. Push `m03-citation-model` and open a PR to `main`; merge after review.
+2. Then start M04 in a fresh session, plan mode, on branch `m04-rca-result` from `main`.
 
-M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`).
+M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`). M03 is committed on `m03-citation-model` and has not been pushed yet.
 
 ## Completed milestones
 
@@ -18,6 +19,7 @@ M01 (PR #1) and M02 (PR #2) are merged to `main` (`3a8a3de`).
 |---|---|---|---|
 | M01 | 2026-09-27 | ae9c0e2 | `pyproject.toml`, ruff/mypy/import-linter, 6 ADR-001 contracts, CI workflow |
 | M02 | 2026-09-27 | bca38e9 | `domain/errors.py`, `identifiers.py`, `enums.py`; spec §6.1 format rules added |
+| M03 | 2026-09-27 | 3b044e1 | `domain/evidence/citation.py`, `excerpt_matching.py`; §6.2 checks 2–4 |
 
 Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, `.gitignore`.
 
@@ -39,6 +41,8 @@ Pre-code work done: spec v0.3, ADR-001…005, `CLAUDE.md`, implementation plan, 
 C1–C3, S1–S7 applied → spec v0.3. S8–S10 resolved by D4/D5/D3.
 
 M02 (user-approved): §6.1 gained `PR#N/comment/ID` for `pr_comment`, file line forms `#Ls-Le` / `#Ln` / none, lowercase 7–40 hex SHAs, and `content_hash` = `sha256:<64 hex>`.
+
+M03 (user-approved): `CitationKind` is an alias of `ArtifactKind`. `content_trust = system` is allowed only on `ci_run` citations. There is no Unicode normalization beyond whitespace. Abbreviated citation SHAs match as a prefix of the artifact SHA. Lines split on `\n` only.
 
 ## Known issues / notes
 

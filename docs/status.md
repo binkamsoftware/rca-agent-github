@@ -3,12 +3,12 @@
 > Read this at the start of every session. Update it at the end of every session that changes state.
 
 **Last updated:** 2026-09-27
-**Current milestone:** M04 — Claims, RecommendedFix, RCAResult finalization rules (implemented on `m04-rca-result`, not yet pushed)
+**Current milestone:** M04 — Claims, RecommendedFix, RCAResult finalization rules (open as PR #4)
 **Blocked on:** nothing.
 
 ## Next action
 
-1. Push `m04-rca-result` and open PR #4; review and merge.
+1. Review and merge PR #4 (`m04-rca-result`).
 2. Then start M05 in a fresh session, plan mode, on branch `m05-run-control` from `main`.
 
 M01–M03 (PRs #1–#3) are merged to `main` (`a4a18b3`).
